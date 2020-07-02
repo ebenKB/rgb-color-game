@@ -1,0 +1,20 @@
+.squares-wrapper {
+  background-color: #000;
+  width: calc(100% - 80px);
+  min-height: 20px;
+  padding: 40px; 
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.squares-wrapper__content {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 10px;
+  row-gap: 10px;
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+}
