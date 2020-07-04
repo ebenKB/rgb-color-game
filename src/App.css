@@ -46,3 +46,12 @@ button.default {
 .score-board *:not(:last-child) {
   margin-right: 20px;
 }
+
+.page-link {
+  margin-top: 20px;
+}
+
+.page-link a{
+  color: white;
+  text-decoration: none;
+}

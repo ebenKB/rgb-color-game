@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, {Component} from 'react'
 import Squares from '../squares/squares';
 import GmaeOver from '../game-over/game-over';
@@ -161,7 +162,6 @@ class Game extends Component {
     const { colorOptions, score, guessColor, trialsLeft, timeLeft, level, isGameOver, success } = this.state;
     return (
       <div>
-        <div>this is success: {success}</div>
         {isGameOver && (
           <audio src={Audio} autoPlay />
         )}
@@ -188,18 +188,25 @@ class Game extends Component {
           handleClick={this.checkColor}
         />
         <div Style="text-align:center; width: 100%" className="flex-wrapper flex-center">
-        <button 
-          className="default"
-          onClick={this.resetGame}
-        >
-          RESET
-        </button>
+          {isGameOver && (
+            <button 
+              className="default"
+              onClick={this.resetGame}
+            >
+              RESET
+            </button>
+          )}
         <button 
           className="primary"
           onClick={this.startGame}
         >
           START GAME
         </button>
+        </div>
+        <div className="text-center page-link">
+          <a href="http://www.hubkbs.com" target="_blank">
+            Want to know more? Contact Hub KB.S
+          </a>
         </div>
       </div>
     )

@@ -11,3 +11,10 @@
 .square.hide {
   display: none;
 }
+
+@media only screen and (max-width: 440px) {
+  .square {
+    width: 80px;
+    height: 80px;
+  }
+}
