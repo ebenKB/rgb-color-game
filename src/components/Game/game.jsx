@@ -35,6 +35,12 @@ class Game extends Component {
     // }
   }
 
+  getRandomNumber = (min, max) => {
+    min=Math.ceil(min);
+    max=Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   initializeGame = () => {
 
   }
@@ -60,6 +66,7 @@ class Game extends Component {
         }))
       }
     } else if (trialsLeft === 0) {
+      // set game over and show the right answer
       this.setState((state) => ({...state, isGameOver: true, playing: false }))
     }
   };
@@ -68,9 +75,9 @@ class Game extends Component {
     const { steps } = this.state;
     let colors = [];
     for (let i=0; i< steps; i++) {
-      const r = Math.floor(Math.random() * 255);
-      const g = Math.floor(Math.random() * 255);
-      const b = Math.floor(Math.random() * 255);
+      const r = this.getRandomNumber(0, 255);
+      const g = this.getRandomNumber(0, 255);
+      const b = this.getRandomNumber(0, 255);
       colors = [...colors, `rgb(${r}, ${g}, ${b})`]
     }
     return colors;
@@ -78,7 +85,7 @@ class Game extends Component {
 
   createColorPalette = () => {
     const colors = this.generateRGBColors();
-    const guess = Math.floor(Math.random() * 5)
+    const guess = this.getRandomNumber(0, 5)
     this.setState((state) => ({
       ...state,
       success: false,
@@ -181,7 +188,7 @@ class Game extends Component {
         <Divider />
         <div className="text-center">
           <h3>What colour is this?</h3>
-          <h1>{guessColor}</h1>
+          <h1 Style={isGameOver ? `color: ${guessColor}`: ''}>{guessColor}</h1>
         </div>
         <Squares
           colors = {colorOptions}
