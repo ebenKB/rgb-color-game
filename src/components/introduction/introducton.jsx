@@ -10,7 +10,7 @@ const Introducton = ({handleAction}) => {
     "<div> <p>Start by guessing an RGB colour.</p> <p>What colour is this? <span class=\"intro-caption\">rgb(255, 0, 0) </span></p></div>",
     "<div><p>If you guessed red, you are correct.</p><div class=\"square\" style=\"background: rgb(255, 0, 0)\"></div></div>",
     "<div>Once you are ready, start the game. <p class=\"intro-caption\">Click on the right color to select.</p></div>",
-    "<div>You have 15 seconds for each guess and 3 attempts.</div>",
+    "<div>You have 15 seconds and 3 attempts for each guess.</div>",
     `<div><p>Good luck</p></div>`
   ])
 
