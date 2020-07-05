@@ -5,11 +5,13 @@ import GmaeOver from '../game-over/game-over';
 import Audio from '../../../src/audio/game-over.mp3';
 import Win from '../../../src/audio/win.mp3';
 import Divider from '../divider/divider';
+import Introducton from '../introduction/introducton';
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      canShowIntro: false,
       gameMode: 'easy',
       guessColor: null,
       colorOptions: [
@@ -142,6 +144,7 @@ class Game extends Component {
 
   startGame = async () => {
     await this.resetGame();
+    this.setState((state) => ({...state, init: false}))
     const { trialsLeft, isGameOver, playing } = this.state;
     if (!playing) {
       if (trialsLeft > 0) {
@@ -158,6 +161,20 @@ class Game extends Component {
     }
   };
 
+  closeIntro = () => {
+    this.setState((state) => ({
+      ...state,
+      canShowIntro: false,
+    }))
+  }
+
+  showIntro = () => {
+    this.setState((state) => ({
+      ...state,
+      canShowIntro: true,
+    }))
+  }
+
   resetTime = () => {
     this.setState((state) => ({
       ...state,
@@ -166,7 +183,7 @@ class Game extends Component {
   }
 
   render() {
-    const { colorOptions, score, guessColor, trialsLeft, timeLeft, level, isGameOver, success } = this.state;
+    const { colorOptions, score, guessColor, trialsLeft, timeLeft, level, isGameOver, success, canShowIntro, playing, init } = this.state;
     return (
       <div>
         {isGameOver && (
@@ -175,26 +192,37 @@ class Game extends Component {
         {success && (
           <audio src={Win} autoPlay />
         )}
+        {canShowIntro && (<Introducton handleAction={this.closeIntro} />)}
         <h1 Style="text-align:center; background-color: lightBlue; padding: 10px">
           RGB COLOUR GUESSING GAME
         </h1>
         {isGameOver && <GmaeOver />}
-        <h3 Style="text-align: center">Time Left: {timeLeft} secs</h3>
-        <div className="score-board text-center">
-          <div>Level: {level}</div>
-          <div>Score: {score}</div>
-          <div>Trials Left: {trialsLeft}</div>
-        </div>
-        <Divider />
-        <div className="text-center">
-          <h3>What colour is this?</h3>
-          <h1 Style={isGameOver ? `color: ${guessColor}`: ''}>{guessColor}</h1>
-        </div>
-        <Squares
-          colors = {colorOptions}
-          handleClick={this.checkColor}
-        />
+        {playing && (
+          <div>
+            <div className="score-board text-center">
+              <div>Level: {level}</div>
+              <div>Score: {score}</div>
+              <div>Trials Left: {trialsLeft}</div>
+            </div>
+            <Divider />
+            <div className="text-center">
+              <h3>What colour is this?</h3>
+              <h1 Style={isGameOver ? `color: ${guessColor}`: ''}>{guessColor}</h1>
+              <h3 Style="text-align: center">Time Left: {timeLeft} secs</h3>
+            </div>
+            <Squares
+              colors = {colorOptions}
+              handleClick={this.checkColor}
+            />
+          </div>
+        )}
         <div Style="text-align:center; width: 100%" className="flex-wrapper flex-center">
+          <button 
+            className="default"
+            onClick={this.showIntro}
+          >
+            NEED HELP?
+          </button>
           {isGameOver && (
             <button 
               className="default"
