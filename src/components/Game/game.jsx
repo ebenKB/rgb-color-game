@@ -144,7 +144,6 @@ class Game extends Component {
 
   startGame = async () => {
     await this.resetGame();
-    this.setState((state) => ({...state, init: false}))
     const { trialsLeft, isGameOver, playing } = this.state;
     if (!playing) {
       if (trialsLeft > 0) {
@@ -183,7 +182,7 @@ class Game extends Component {
   }
 
   render() {
-    const { colorOptions, score, guessColor, trialsLeft, timeLeft, level, isGameOver, success, canShowIntro, playing, init } = this.state;
+    const { colorOptions, score, guessColor, trialsLeft, timeLeft, level, isGameOver, success, canShowIntro, playing } = this.state;
     return (
       <div>
         {isGameOver && (
