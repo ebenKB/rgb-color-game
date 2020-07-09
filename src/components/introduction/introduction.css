@@ -16,9 +16,9 @@
 .introduction {
   background: white;
   position: absolute;
-  width: 50%;
+  width: 40%;
   margin: auto;
-  margin-left: 25%;
+  margin-left: 30%;
   height: 60vh;
   margin-top: 20vh;
   color: black;
@@ -43,4 +43,20 @@
   background: #000;
   color: #fff;
   border-radius: 2.5px;
+}
+
+
+@media only screen and (max-width: 440px) {
+  .introduction {
+    width: calc(80% - 20px);
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px;
+    height: 70vh;
+  }
+
+  .introduction-body {
+    height: 50vh;
+  }
+  
 }

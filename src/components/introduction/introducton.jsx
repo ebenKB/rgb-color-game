@@ -4,7 +4,7 @@ import './introduction.css';
 const Introducton = ({handleAction}) => {
   const [intro] = useState([
     "<div><p>Welcome to the world of colour guessing."+
-    "</p><p>RGB color guess allows you to sharpen your RGB skills.</p></div>",
+    "</p><p>RGB color guess allows you to sharpen your RGB skills.</p> <div class=\"text-center\"><img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnUksxXEZADcDG9S38GnBYUJrcYnb7O6Lfqg&usqp=CAU\" alt=\"image\"/></div> </div>",
     "<div><p>Do you remember that three colours (R, G, B) combine to give all colours?</p>"+
     "<p>E.g rgb(0, 255, 0) is <div class=\"square\" style=\"background: rgb(0, 255, 0)\"/></p></div>",
     "<div> <p>Start by guessing an RGB colour.</p> <p>What colour is this? <span class=\"intro-caption\">rgb(255, 0, 0) </span></p></div>",
