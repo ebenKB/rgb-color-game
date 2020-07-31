@@ -1,6 +1,7 @@
 body {
   background: #000;
   color: #fff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 button {
@@ -54,4 +55,12 @@ button.default {
 .page-link a{
   color: white;
   text-decoration: none;
+}
+
+.big-caption {
+  font-size: 1.5rem;
+}
+
+.bold {
+  font-weight: 900;
 }

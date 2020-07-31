@@ -6,6 +6,9 @@ import Audio from '../../../src/audio/game-over.mp3';
 import Win from '../../../src/audio/win.mp3';
 import Divider from '../divider/divider';
 import Introducton from '../introduction/introducton';
+import Settings from '../settings/settings';
+import './game.css';
+import Timer from '../timer/timer';
 
 class Game extends Component {
   constructor(props) {
@@ -25,6 +28,7 @@ class Game extends Component {
       level: 1,
       playing: false,
       success: false,
+      isMuted: true,
     }
   }
   componentDidMount() {
@@ -46,6 +50,13 @@ class Game extends Component {
   initializeGame = () => {
 
   }
+
+  setVolume = () => {
+    const {isMuted} = this.state;
+    this.setState((state) => ({
+      isMuted: !isMuted,
+    }))
+  };
 
   checkColor = (color) => {
     const { trialsLeft, colorOptions, isGameOver } = this.state;
@@ -126,7 +137,7 @@ class Game extends Component {
           clearInterval(interval);
         }
       }, 1000)
-    }
+    } return
   }
 
   resetGame = async () => {
@@ -143,20 +154,21 @@ class Game extends Component {
   }
 
   startGame = async () => {
-    await this.resetGame();
-    const { trialsLeft, isGameOver, playing } = this.state;
-    if (!playing) {
-      if (trialsLeft > 0) {
-        this.createColorPalette();
+    const { trialsLeft, isGameOver, playing, timeLeft } = this.state;
+    if (!playing || trialsLeft === 0 || timeLeft === 0) {
+      await this.resetGame();
+      // if (trialsLeft > 0) {
+        // this.createColorPalette();
         this.setState((state) => ({
           ...state,
           playing: true,
+          isGameOver: false,
         }), () => {
-          if (!isGameOver) {
+          // if (!isGameOver) {
             this.startCountTime();
-          }
+          // }
         })
-      }
+      // }
     }
   };
 
@@ -182,40 +194,60 @@ class Game extends Component {
   }
 
   render() {
-    const { colorOptions, score, guessColor, trialsLeft, timeLeft, level, isGameOver, success, canShowIntro, playing } = this.state;
+    const {
+      colorOptions,
+      score,
+      guessColor,
+      trialsLeft,
+      timeLeft,
+      level,
+      isGameOver,
+      success,
+      canShowIntro,
+      playing,
+      isMuted
+    } = this.state;
     return (
       <div>
-        {isGameOver && (
+        {isGameOver && !isMuted && (
           <audio src={Audio} autoPlay />
         )}
-        {success && (
+        {success && !isMuted && (
           <audio src={Win} autoPlay />
         )}
         {canShowIntro && (<Introducton handleAction={this.closeIntro} />)}
-        <h1 Style="text-align:center; background-color: lightBlue; padding: 10px">
+        <h1 Style="text-align:center;  padding: 10px">
           RGB COLOUR GUESSING GAME
         </h1>
-        {isGameOver && <GmaeOver />}
+        {isGameOver && <GmaeOver totalScore={score}/>}
         {playing && (
           <div>
+            <Settings
+              isMuted={this.state.isMuted}
+              handleMuteAction={this.setVolume}
+            />
             <div className="score-board text-center">
-              <div>Level: {level}</div>
+              {/* <div>Level: {level}</div> */}
               <div>Score: {score}</div>
               <div>Trials Left: {trialsLeft}</div>
             </div>
             <Divider />
-            <div className="text-center">
-              <h3>What colour is this?</h3>
-              <h1 Style={isGameOver ? `color: ${guessColor}`: ''}>{guessColor}</h1>
-              <h3 Style="text-align: center">Time Left: {timeLeft} secs</h3>
+            <div className="game-wrapper">
+              <div className="guess-content text-center">
+                <h3>What colour is this?</h3>
+                <h1 Style={isGameOver ? `color: ${guessColor}`: ''}>{guessColor}</h1>
+              </div>
+              <div className="game-pallete">
+                <Timer time={timeLeft} />
+                <Squares
+                  colors = {colorOptions}
+                  handleClick={this.checkColor}
+                />
+              </div>
             </div>
-            <Squares
-              colors = {colorOptions}
-              handleClick={this.checkColor}
-            />
           </div>
         )}
-        <div Style="text-align:center; width: 100%" className="flex-wrapper flex-center">
+        <div Style="text-align:center; width: 100%;" className="game-wrapper footer flex-wrapper flex-center">
           <button 
             className="default"
             onClick={this.showIntro}
@@ -230,18 +262,18 @@ class Game extends Component {
               RESET
             </button>
           )}
-        <button 
-          className="primary"
-          onClick={this.startGame}
-        >
-          START GAME
-        </button>
+          <button 
+            className="primary"
+            onClick={this.startGame}
+          >
+            START GAME
+          </button>
         </div>
-        <div className="text-center page-link">
+        {/* <div className="text-center page-link">
           <a href="http://www.hubkbs.com" target="_blank">
             Want to know more? Contact Hub KB.S
           </a>
-        </div>
+        </div> */}
       </div>
     )
   }

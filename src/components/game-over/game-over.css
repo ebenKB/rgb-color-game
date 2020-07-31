@@ -1,0 +1,37 @@
+.game-over__wrapper {
+  position: absolute;
+  top: 0;
+}
+
+.game-over__overlay {
+  top: 0;
+  position: absolute;
+  background: #000;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  opacity: 0.5;
+}
+
+.game-over__content {
+  z-index: 200;
+  opacity: 1;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 30%; */
+}
+
+.game-over__content .caption {
+  background: #000;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.guess-content {
+  padding-top: 10px;
+}

@@ -1,0 +1,19 @@
+.timer {
+  position: absolute;
+  right: -20px;
+  background: white;
+  color: black;
+  padding: 10px;
+  border-radius: 4px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.timer h1 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.small-caption {
+  font-size: 0.9rem;
+}

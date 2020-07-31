@@ -1,0 +1,15 @@
+.game-wrapper {
+  background: #191919;
+  position: relative;
+}
+
+.game-pallete{
+  position: relative;
+  width: max-content;
+  margin: auto;
+  padding: 40px;
+}
+
+.footer {
+  padding: 20px;
+}

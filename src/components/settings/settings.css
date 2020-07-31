@@ -1,0 +1,14 @@
+.game-settings {
+  position: absolute;
+  top: 40%;
+  left: 30px;
+  z-index: 100;
+}
+
+.game-settings .mute {
+  fill: red;
+}
+
+.game-settings svg {
+  font-size: 2rem;
+}
