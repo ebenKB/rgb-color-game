@@ -12,3 +12,14 @@
 .game-settings svg {
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 500px) {
+  .game-settings {
+    left: 10px;
+    top: 30%;
+  }
+
+  .game-settings svg {
+    font-size: 1.5rem;
+  }
+}

@@ -247,7 +247,7 @@ class Game extends Component {
             </div>
           </div>
         )}
-        <div Style="text-align:center; width: 100%;" className="game-wrapper footer flex-wrapper flex-center">
+        <div className="game-wrapper footer flex-wrapper flex-center">
           <button 
             className="default"
             onClick={this.showIntro}

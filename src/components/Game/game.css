@@ -12,4 +12,18 @@
 
 .footer {
   padding: 20px;
+  width: calc(100% - 40px);
+  text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+  .game-pallete {
+    padding: 0;
+  }
+
+  .footer {
+    padding: 0;
+    padding-bottom: 20px;
+    width: 100%
+  }
 }
