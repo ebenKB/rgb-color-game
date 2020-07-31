@@ -2,7 +2,7 @@ import React from 'react';
 import './squares.css';
 import Square from '../square/square';
 
-const Squares = ({colors, checkColor, handleClick}) => {
+const Squares = ({colors, handleClick}) => {
   return (
     <div className="squares-wrapper">
       <div className="squares-wrapper__content">

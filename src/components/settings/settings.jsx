@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
 
