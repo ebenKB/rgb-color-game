@@ -154,7 +154,7 @@ class Game extends Component {
   }
 
   startGame = async () => {
-    const { trialsLeft, isGameOver, playing, timeLeft } = this.state;
+    const { trialsLeft, playing, timeLeft } = this.state;
     if (!playing || trialsLeft === 0 || timeLeft === 0) {
       await this.resetGame();
       // if (trialsLeft > 0) {
@@ -200,7 +200,6 @@ class Game extends Component {
       guessColor,
       trialsLeft,
       timeLeft,
-      level,
       isGameOver,
       success,
       canShowIntro,
