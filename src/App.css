@@ -64,3 +64,13 @@ button.default {
 .bold {
   font-weight: 900;
 }
+
+.text-right {
+  text-align: right;
+}
+
+.custom-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}

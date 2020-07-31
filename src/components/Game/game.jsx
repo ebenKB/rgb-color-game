@@ -32,13 +32,19 @@ class Game extends Component {
     }
   }
   componentDidMount() {
-    // const { trialsLeft, isGameOver } = this.state;
-    // if (trialsLeft > 0) {
-    //   this.createColorPalette();
-    //   if (!isGameOver) {
-    //     this.startCountTime();
-    //   }
-    // }
+    // set the default game steps
+    const { steps } = this.state;
+    let trials = null;
+    if (steps < 4) {
+      trials = 2;
+    } else {
+      trials = Math.ceil(steps / 2)
+    }
+    this.setState((state) => ({
+      ...state,
+      trailsLeft: trials,
+      maximumTrials: trials,
+    }),() => console.log('We set trials', this.state))
   }
 
   getRandomNumber = (min, max) => {
@@ -97,8 +103,9 @@ class Game extends Component {
   }
 
   createColorPalette = () => {
+    const { steps } = this.state;
     const colors = this.generateRGBColors();
-    const guess = this.getRandomNumber(0, 5)
+    const guess = this.getRandomNumber(0, (steps -1))
     this.setState((state) => ({
       ...state,
       success: false,
@@ -273,6 +280,9 @@ class Game extends Component {
             Want to know more? Contact Hub KB.S
           </a>
         </div> */}
+        <div className="text-right">
+          <a href="https://github.com/ebenKB" className="custom-link" target="_blank">Made with 💙 by ebenKB</a>
+        </div>
       </div>
     )
   }
