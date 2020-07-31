@@ -281,7 +281,9 @@ class Game extends Component {
           </a>
         </div> */}
         <div className="text-right">
-          <a href="https://github.com/ebenKB" className="custom-link" target="_blank">Made with 💙 by ebenKB</a>
+          <a href="https://github.com/ebenKB" className="custom-link" target="_blank">
+            Made with <span role="img" aria-label="blue heart">💙</span> by ebenKB
+          </a>
         </div>
       </div>
     )
